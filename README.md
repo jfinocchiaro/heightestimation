@@ -14,3 +14,7 @@ A spatial and temporal network (based of Peleg's in the paper below) combined in
 Respective networks are in spatialnetwork.py, temporalnetwork.py, and twostream.py
 
 Preprocessing is done in magereaders.py
+
+Annotations are labelled: height \t # of clips in video.  Ex:
+
+166 10 means there are 10 clips where the height is 166 cm.
