@@ -134,7 +134,7 @@ if __name__ == "__main__":
 
 
     # Test and train model
-    model = spatialNet()
+    model = spatialNet('spatialwtssmerge.h5')
     opt = SGD(clipvalue=5)
     model.compile(optimizer=opt, loss='mean_squared_error')
     model.fit(trainsamples, y_train_norm, nb_epoch=10, verbose=1)
