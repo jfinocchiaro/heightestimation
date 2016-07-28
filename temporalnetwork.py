@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
 
     # Test pretrained model
-    model = temporalNet()
+    model = temporalNet('temporalwtsmerge.h5')
     sgd = SGD(lr=0.0001, nesterov=True)
     model.compile(optimizer=sgd, loss='mean_squared_error')
     model.fit(trainsamples, y_train_norm, nb_epoch=10, verbose=1)
