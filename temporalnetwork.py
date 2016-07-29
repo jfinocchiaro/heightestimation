@@ -16,31 +16,6 @@ from sklearn import preprocessing
 
 
 
-def spatialnet(weights=None):
-    model = Sequential()
-
-    model.add(Convolution3D(30, 20, 17, 17, activation='relu', subsample=(4,2,2), input_shape=(1, 60,32,32)))
-
-
-    model.add(MaxPooling3D(pool_size=(13, 2, 2), strides=(13,2, 2)))
-
-    model.add(Reshape((30, 4, 4)))
-
-
-    model.add(Convolution2D(100, 3, 3, activation='relu'))
-    model.add(MaxPooling2D((2, 2), strides=(2, 2)))
-    model.add(Flatten())
-
-
-    model.add(Dense(400, activation='relu'))
-    model.add(Dense(50, activation='relu'))
-    model.add(Dense(1, activation='relu'))
-
-    if weights:
-        model.load_weights(weights)
-
-    return model
-
 def temporalNet(weights=None):
     model = Sequential()
 
