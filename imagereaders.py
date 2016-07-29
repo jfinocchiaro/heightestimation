@@ -169,7 +169,7 @@ def makeVidSegments(video, normalFrameRate, desiredFrameRate, secondsLong, start
     secondsLong *= desiredFrameRate
     startsEverySecond *= desiredFrameRate
     returnList = []
-    willtheRealReturnListPleaseStandUp = []
+    realReturn = []
     for x in range(numFrames):
         if x % normRate == 0:
             returnList.append(video[x])
@@ -177,16 +177,16 @@ def makeVidSegments(video, normalFrameRate, desiredFrameRate, secondsLong, start
         for x in range(len(returnList)):
             if (x % startsEverySecond == 0) and ((x+secondsLong + 1) < len(returnList)):
                 clip = clipvideo(returnList, (x / desiredFrameRate), (x+secondsLong)/desiredFrameRate, desiredFrameRate, flow=flow)
-                willtheRealReturnListPleaseStandUp.append(clip)
+                realReturn.append(clip)
     else:
         for x in range(len(returnList)):
             if (x % startsEverySecond == 0) and ((x + secondsLong) < len(returnList)):
                 clip = clipvideo(returnList, (x / desiredFrameRate), (x + secondsLong) / desiredFrameRate,
                                  desiredFrameRate, flow=flow)
-                willtheRealReturnListPleaseStandUp.append(clip)
+                realReturn.append(clip)
 
-    print len(willtheRealReturnListPleaseStandUp)
-    return willtheRealReturnListPleaseStandUp
+    print len(realReturn)
+    return realReturn
 
 
 
