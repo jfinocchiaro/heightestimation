@@ -17,38 +17,6 @@ from keras.layers.advanced_activations import LeakyReLU, ELU
 from keras.layers.normalization import BatchNormalization
 
 
-#Combine two models
-def combinetrain(model1, model2):
-    merged = Merge([model1, model2], mode='concat')
-    model = Sequential()
-    model.add(merged)
-    model.add(Dense(1, activation='linear'))
-    return model
-
-
-#Temporal Network input is 60 x and y Optical Flow Frames of Size 32x32
-def temporalNet(weights=None):
-    model = Sequential()
-
-    model.add(Convolution3D(30, 20, 17, 17, activation='relu', subsample=(4,2,2), input_shape=(1, 120,32,32)))
-    model.add(MaxPooling3D(pool_size=(13, 2, 2), strides=(13,2, 2)))
-    model.add(Reshape((60, 4, 4)))
-
-    model.add(Convolution2D(100, 3, 3, activation='relu'))
-    model.add(MaxPooling2D((2, 2), strides=(2, 2)))
-    model.add(Flatten())
-
-
-    model.add(Dense(400, activation='relu'))
-    model.add(Dense(50, activation='relu'))
-    model.add(Dense(1, activation='relu'))
-
-    if weights:
-        model.load_weights(weights)
-
-    return model
-
-
 #Spatial network 60 grayscale frames of size 32x32
 def spatialNet(weights=None):
     model = Sequential()
